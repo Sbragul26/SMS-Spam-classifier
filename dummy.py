@@ -76,7 +76,7 @@ df[df['target'] == 1][['num_characters','num_words','num_sentences']].describe()
 numeric = df[['target', 'num_characters', 'num_words', 'num_sentences']]
 
 
-#------------------------------------>>1st error
+
 import seaborn as sns
 plt.figure(figsize=(12,6))
 sns.histplot(df[df['target'] == 0]['num_characters'])
@@ -98,7 +98,7 @@ sns.pairplot(df,hue='target')
 plt.title('Pairplot')
 plt.show()
 
-#-------------------------------------->>2nd error
+
 '''
 sns.heatmap(df.corr(),annot=True)
 plt.show()
@@ -150,7 +150,7 @@ df['transformed_text'] = df['text'].apply(transform_text)
 df.head()
 
 
-#------------------------------------------------------------------>>>>Workiing...
+
 wc = WordCloud(width=500, height=500, min_font_size=10, background_color='white')
 spam_wc = wc.generate(df[df['target'] == 1]['transformed_text'].str.cat(sep=" "))
 plt.figure(figsize=(15, 6))
@@ -265,7 +265,6 @@ def train_classifier(clf, X_train, y_train, X_test, y_test):
     precision = precision_score(y_test, y_pred)
     return accuracy, precision
 
-#--------------------------------------->>Working slowly (takes around 5 min)
 for name, clf in clfs.items():
     current_accuracy, current_precision = train_classifier(clf, X_train, y_train, X_test, y_test)
     print("For ", name)
